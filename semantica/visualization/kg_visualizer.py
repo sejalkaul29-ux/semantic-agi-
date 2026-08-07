@@ -735,8 +735,9 @@ class KGVisualizer:
         for edge in edges:
             source_pos = pos.get(edge["source"])
             target_pos = pos.get(edge["target"])
-            if source_pos and target_pos:
-                x0, y0 = source_pos
+            if (source_pos is not None and target_pos is not None
+                    and len(source_pos) >= 2 and len(target_pos) >= 2):
+                x0, y0 = source_pos[0], source_pos[1]
                 x1, y1 = target_pos
 
                 is_path_edge = (edge["source"], edge["target"]) in path_edge_set
